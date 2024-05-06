@@ -2,12 +2,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import bgImg from '../../assets/images/register.jpg'
 import logo from '../../assets/images/logo.png'
 import { useContext } from 'react'
-
 import toast from 'react-hot-toast'
 import { AuthContext } from '../../Provider/AuthProvider'
 
 
 const Register = () => {
+  
   const navigate = useNavigate()
   const { signInWithGoogle, createUser, updateUserProfile, user, setUser } =
     useContext(AuthContext)
