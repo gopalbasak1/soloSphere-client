@@ -14,7 +14,7 @@ const TabCategories = () => {
                 setJobs(data);
         }
         getData();
-    },[])
+    },[]);
 
     return (
         <Tabs>
