@@ -7,16 +7,15 @@ import toast from 'react-hot-toast'
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation()
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
-  const from = location.state || '/'
+  const { signIn, signInWithGoogle, user, loading } = useContext(AuthContext);
 
-  // useEffect(()=>{
-  //   if(user){
-  //     navigate('/')
-  //   }
-  // }, [navigate])
+  const from = location.state || '/';
 
-  // if(user || loading) return
+  useEffect(()=>{
+    if(user){
+      navigate('/')
+    }
+  }, [navigate, user])
 
   // Google SignIn
   const handleGoogleSignIn = async () => {
@@ -48,6 +47,8 @@ const Login = () => {
       toast.error(err?.message)
     }
   }
+
+  if(user || loading) return
 
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
