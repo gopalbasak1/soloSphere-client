@@ -9,6 +9,7 @@ import { AuthContext } from '../../Provider/AuthProvider'
 const Register = () => {
   
   const navigate = useNavigate()
+  const from = location.state || '/'
   const { signInWithGoogle, createUser, updateUserProfile, user, setUser } =
     useContext(AuthContext)
 
@@ -26,7 +27,7 @@ const Register = () => {
       console.log(result)
       await updateUserProfile(name, photo)
       setUser({ ...user, photoURL: photo, displayName: name })
-      navigate('/')
+      navigate(from, {replace: true})
       toast.success('Signup Successful')
     } catch (err) {
       console.log(err)
@@ -39,7 +40,7 @@ const Register = () => {
     try {
       await signInWithGoogle()
       toast.success('Signin Successful')
-      navigate('/')
+      navigate(from, {replace: true})
     } catch (err) {
       console.log(err)
       toast.error(err?.message)
