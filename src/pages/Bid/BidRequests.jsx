@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const BidRequests = () => {
 
@@ -24,11 +25,12 @@ const BidRequests = () => {
     //handleStatus
     const handleStatus =async(id,prevStatus, status)=>{
         console.log(id,prevStatus, status);
-        if(prevStatus === status) return console.log('Sorry not get');
+        if(prevStatus === status) return toast.error('You can not do double click');
         const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/bid/${id}`, 
             {status}
         )
         console.log(data);
+        // UI refresh/update
         getData();
     } 
 
